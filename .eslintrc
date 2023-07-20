@@ -24,6 +24,9 @@
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "import/no-cycle": "off",
         "@typescript-eslint/no-explicit-any": 2
     },
     "ignorePatterns": ["*.config.js", "node_modules/", "dist/"]

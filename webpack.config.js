@@ -11,14 +11,10 @@ const devMode = mode === 'development';
 
 module.exports = {
     mode,
-    target: 'web',
+    target: devMode ? 'web' : 'browserslist',
     devtool: devMode ? 'inline-source-map' : undefined,
     devServer: {
-        historyApiFallback: {
-            rewrites: [{ from: /./, to: '/index.html' }],
-        },
-        port: 8000,
-        watchFiles: ['./src/*'],
+        historyApiFallback: true,
         open: true,
         hot: true,
         client: {
@@ -26,7 +22,6 @@ module.exports = {
                 errors: true,
                 warnings: false,
             },
-            progress: true,
         },
     },
     entry: './src/index.ts',
