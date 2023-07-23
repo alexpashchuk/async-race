@@ -11,7 +11,7 @@ const devMode = mode === 'development';
 
 module.exports = {
     mode,
-    target: devMode ? 'web' : 'browserslist',
+    target: 'web',
     devtool: devMode ? 'inline-source-map' : undefined,
     devServer: {
         historyApiFallback: true,
