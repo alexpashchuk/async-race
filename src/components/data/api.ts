@@ -70,4 +70,55 @@ async function getWinners(page = FIRST_PAGE, limit = WINNERS_IN_PAGE): Promise<W
     };
 }
 
-export { getCar, getCars, deleteCar, deleteWinner, getWinners, startEngine, stopEngine, driveCar };
+async function createWinner(data: Winner): Promise<Winner> {
+    const response = await fetch(`${WINNERS}`, {
+        method: HttpMethod.POST,
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    return response.json();
+}
+
+async function getWinner(id: number): Promise<Winner> {
+    const response = await fetch(`${WINNERS}/${id}`);
+    return response.json();
+}
+
+export async function updateWinner(id: number, data: Winner): Promise<Winner> {
+    const response = await fetch(`${WINNERS}/${id}`, {
+        method: HttpMethod.PUT,
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    return response.json();
+}
+
+async function getWinnerStatus(id: number): Promise<number> {
+    return (await fetch(`${WINNERS}/${id}`)).status;
+}
+
+async function saveWinner(car: WinnerItems): Promise<void> {
+    const id = car.car.id as number;
+    const winnerStatus = await getWinnerStatus(id);
+    if (winnerStatus === HttpStatus.NOT_FOUND) {
+        const winnerSave: Winner = {
+            id,
+            wins: 1,
+            time: car.time,
+        };
+        await createWinner(winnerSave);
+    } else {
+        const winner = await getWinner(id);
+        const winnerSave: Winner = {
+            id,
+            wins: winner.wins + 1,
+            time: car.time < winner.time ? car.time : winner.time,
+        };
+        await updateWinner(id, winnerSave);
+    }
+}
+export { getCar, getCars, deleteCar, deleteWinner, getWinners, startEngine, stopEngine, driveCar, saveWinner };

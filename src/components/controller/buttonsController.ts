@@ -1,7 +1,7 @@
 import { deleteCar, deleteWinner, getCar } from '../data/api';
 import { renderGarage, updateGarage } from '../view/garageView';
 import { startDriving, stopDriving } from './driveController';
-import { resetRace } from './raceController';
+import { resetRace, startRace } from './raceController';
 
 export default function renderButtonEvents() {
     renderCarButtons();
@@ -53,6 +53,10 @@ function renderCarButtons() {
 function renderControlButtons() {
     document.body.addEventListener('click', async (e: Event) => {
         const target = e.target as HTMLElement;
+        if (target.classList.contains('race-button')) {
+            startRace(e);
+        }
+
         if (target.classList.contains('reset-button')) {
             resetRace(e);
         }
