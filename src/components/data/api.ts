@@ -34,6 +34,17 @@ async function deleteCar(id: number): Promise<void> {
     await fetch(`${GARAGE}/${id}`, { method: HttpMethod.DELETE });
 }
 
+async function updateCar(id: number, data: Car): Promise<Car> {
+    const response = await fetch(`${GARAGE}/${id}`, {
+        method: HttpMethod.PUT,
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    return response.json();
+}
+
 async function startEngine(id: number): Promise<Engine> {
     const response = await fetch(`${ENGINE}?id=${id}&status=${CarStatus.START}`, {
         method: HttpMethod.PATCH,
@@ -138,10 +149,11 @@ export {
     getCars,
     createCar,
     deleteCar,
-    deleteWinner,
-    getWinners,
-    startEngine,
+    updateCar,
     stopEngine,
+    startEngine,
     driveCar,
+    getWinners,
+    deleteWinner,
     saveWinner,
 };

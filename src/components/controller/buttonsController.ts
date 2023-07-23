@@ -23,8 +23,8 @@ function renderCarButtons() {
 
         if (target.classList.contains('select-button')) {
             const carId = Number(target.dataset.select);
-            const { name, color } = await getCar(carId);
-            localStorage.setItem('selectedCar', JSON.stringify({ name, color }));
+            const { name, color, id } = await getCar(carId);
+            localStorage.setItem('selectedCar', JSON.stringify({ name, color, id }));
             updateNameInput.value = name;
             updateColorInput.value = color;
             updateNameInput.disabled = false;
