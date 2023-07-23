@@ -1,6 +1,6 @@
+import { createCar } from '../data/api';
 import { renderGarage, updateGarage } from '../view/garageView';
 import { generateRandomCar } from '../utils/utils';
-import { createCar } from '../data/api';
 
 export default async function generateCars(e: Event) {
     const target = e.target as HTMLButtonElement;

@@ -1,6 +1,6 @@
-import { Car } from '../types/interfaces';
 import { createCar, updateCar } from '../data/api';
 import { renderGarage, updateGarage } from '../view/garageView';
+import { Car } from '../types/interfaces';
 
 export default function renderForms() {
     const garage = document.querySelector('.garage') as HTMLDivElement;

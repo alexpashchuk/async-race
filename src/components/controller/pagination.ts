@@ -1,6 +1,7 @@
 import { options, store } from '../data/state';
 import { renderGarage, updateGarage } from '../view/garageView';
 import { renderWinners, updateWinners } from '../view/winnersView';
+import { View } from '../types/enums';
 
 export default function renderPagination() {
     const prevPageButton = document.querySelector('.prev-button') as HTMLButtonElement;
@@ -11,7 +12,7 @@ export default function renderPagination() {
     const raceButton = document.querySelector('.race-button') as HTMLButtonElement;
 
     prevPageButton.addEventListener('click', async () => {
-        if (options.view === 'winners') {
+        if (options.view === View.Winners) {
             prevPageButton.disabled = true;
             store.winnersPage -= 1;
             await updateWinners();
@@ -26,7 +27,7 @@ export default function renderPagination() {
     });
 
     nextPageButton.addEventListener('click', async () => {
-        if (options.view === 'winners') {
+        if (options.view === View.Winners) {
             nextPageButton.disabled = true;
             store.winnersPage += 1;
             await updateWinners();

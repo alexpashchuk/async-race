@@ -1,10 +1,11 @@
-import { startDriving, stopDriving } from './driveController';
 import { store } from '../data/state';
+import { startDriving, stopDriving } from './driveController';
 import { saveWinner } from '../data/api';
 import { Car, RacingCar, WinnerItems } from '../types/interfaces';
 
 async function startRace(e: Event) {
-    const message = document.querySelector('.message-win') as HTMLElement;
+    const messageWrapper = document.querySelector('.message-win') as HTMLElement;
+    const message = document.querySelector('.message') as HTMLElement;
     const winnersButton = document.querySelector('.winners-button') as HTMLButtonElement;
     const target = e.target as HTMLButtonElement;
     target.disabled = true;
@@ -13,7 +14,7 @@ async function startRace(e: Event) {
     await saveWinner(winner);
     store.winnersCount = +1;
     message.innerHTML = `THE WINNER IS ${winner.car.name} (${winner.time} SEC)!`;
-    message.classList.toggle('visible', true);
+    messageWrapper.classList.add('visible');
     const resetButton = document.querySelector('.reset-button') as HTMLButtonElement;
     resetButton.disabled = false;
     winnersButton.disabled = false;

@@ -1,4 +1,6 @@
 import { COUNT_RANDOM_CAR, COUNT_RANDOM_COLOR, HEX_LETTERS } from './constants';
+import { options } from '../data/state';
+import { SortOrder } from '../types/enums';
 
 const getRandomName = (): string => {
     const names = [
@@ -63,6 +65,13 @@ function getSortOrder(sort?: string | null, order?: string | null) {
     return '';
 }
 
+const setSortingSign = (sort: string) => {
+    if (options.sort === sort) {
+        return options.order === SortOrder.Asc ? ' &#8593' : ' &#8595';
+    }
+    return '';
+};
+
 function getPosition(element: HTMLElement) {
     const { top, left, width, height } = element.getBoundingClientRect();
 
@@ -79,4 +88,4 @@ function getDistance(firstEl: HTMLElement, secondEl: HTMLElement) {
     return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y);
 }
 
-export { generateRandomCar, getSortOrder, getDistance };
+export { generateRandomCar, getSortOrder, setSortingSign, getDistance };

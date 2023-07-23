@@ -1,7 +1,7 @@
 import { store } from '../data/state';
-import { Car } from '../types/interfaces';
 import { getCars } from '../data/api';
 import { CAR_IN_PAGE, FIRST_PAGE } from '../utils/constants';
+import { Car } from '../types/interfaces';
 
 export function renderGarage() {
     return `
@@ -20,7 +20,7 @@ function renderCarTrack(car: Car) {
     <button class="remove-button" type="button" data-remove="${car.id}">REMOVE</button>
   <div class="control-buttons">
     <button class="start-button" type="button" data-start="${car.id}">A</button>
-    <button class="stop-button" type="button" data-stop="${car.id}">B</button>
+    <button class="stop-button" type="button" data-stop="${car.id}" disabled>B</button>
   </div>
   <h3 class="car-name">${car.name}</h3>
 </div>

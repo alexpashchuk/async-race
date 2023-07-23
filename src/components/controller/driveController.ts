@@ -1,8 +1,8 @@
 import { store } from '../data/state';
 import { driveCar, startEngine, stopEngine } from '../data/api';
-import { RacingCar } from '../types/interfaces';
 import renderAnimation from './renderAnimation';
 import { getDistance } from '../utils/utils';
+import { RacingCar } from '../types/interfaces';
 
 async function startDriving(id: number) {
     const track = document.querySelector(`[data-track="${id}"]`) as HTMLDivElement;

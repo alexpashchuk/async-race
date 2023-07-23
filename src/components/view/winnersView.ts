@@ -1,7 +1,9 @@
-import { renderCarImage } from './garageView';
-import { store } from '../data/state';
-import { WinnerItems } from '../types/interfaces';
+import { options, store } from '../data/state';
 import { getWinners } from '../data/api';
+import { renderCarImage } from './garageView';
+import { setSortingSign } from '../utils/utils';
+import { SortBy, SortOrder } from '../types/enums';
+import { WinnerItems } from '../types/interfaces';
 
 function renderWinners(winners: WinnerItems[]) {
     return `
@@ -13,8 +15,8 @@ function renderWinners(winners: WinnerItems[]) {
             <th>№</th>
             <th>CAR</th>
             <th>MODEL</th>
-            <th class="table-sort">WINS</th>
-            <th class="table-sort">BEST TIME</th>
+            <th class="sort-wins">WINS<span>${setSortingSign(SortBy.Wins)}</span></th>
+            <th class="sort-time">BEST TIME<span>${setSortingSign(SortBy.Time)}</span></th>
           </tr>
         </thead>
         <tbody class="table-body">
@@ -45,4 +47,12 @@ async function updateWinners() {
     prevPage.disabled = store.winnersPage <= 1;
 }
 
-export { renderWinners, updateWinners };
+const renderSorting = async (sort: string) => {
+    const winnersContainer = document.querySelector('.winners-view') as HTMLDivElement;
+    options.order = options.order === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc;
+    options.sort = sort;
+    await updateWinners();
+    winnersContainer.innerHTML = renderWinners(store.winners);
+};
+
+export { renderWinners, updateWinners, renderSorting };

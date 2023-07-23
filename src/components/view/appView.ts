@@ -1,6 +1,6 @@
+import { options, store } from '../data/state';
 import { renderGarage, updateGarage } from './garageView';
 import { renderWinners, updateWinners } from './winnersView';
-import { options, store } from '../data/state';
 import { View } from '../types/enums';
 
 export function appView() {
@@ -14,23 +14,24 @@ export function appView() {
                 <form class="form-create">
                   <input type="color" class="create-color" name="color" value="#40bd3e">
                   <input type="text" class="create-name" name="name" placeholder="Enter car name...">
-                  <button type="submit" class="create-button button" disabled="">CREATE</button>
+                  <button type="submit" class="create-button button" disabled>CREATE</button>
                 </form>
                 <form class="form-update">
-                  <input type="color" class="update-color" name="color" disabled="" value="#40bd3e">
-                  <input type="text" class="update-name" name="name" disabled="" placeholder="Enter car name...">
-                  <button type="submit" class="update-button button" disabled="">UPDATE</button>
+                  <input type="color" class="update-color" name="color" disabled value="#40bd3e">
+                  <input type="text" class="update-name" name="name" disabled placeholder="Enter car name...">
+                  <button type="submit" class="update-button button" disabled>UPDATE</button>
                 </form>
               </div>
               <div class="race-controls">
                 <button type="button" class="race-button">RACE</button>
-                <button type="button" class="reset-button" disabled="">RESET</button>
+                <button type="button" class="reset-button" disabled>RESET</button>
                 <button type="button" class="generate-button">GENERATE CARS</button>
               </div>
             </div>
               <div class="garage">${renderGarage()}</div>
               <div class="message-win">
                 <p class="message"></p>
+                <button type="button" class="close-button">OK</button>
               </div>
             </div>
             <div class="winners-view hidden">${renderWinners(store.winners)}</div>

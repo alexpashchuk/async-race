@@ -2,7 +2,6 @@ interface Car {
     id?: number;
     name: string;
     color: string;
-    isEngineStarted?: boolean;
 }
 
 interface Cars {

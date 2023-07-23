@@ -4,10 +4,13 @@ import { startDriving, stopDriving } from './driveController';
 import { resetRace, startRace } from './raceController';
 import generateCars from './generateCars';
 import renderPagination from './pagination';
+import { SortBy } from '../types/enums';
+import { renderSorting } from '../view/winnersView';
 
 export default function renderButtonEvents() {
     renderCarButtons();
     renderControlButtons();
+    renderSortButtons();
     renderPagination();
 }
 
@@ -55,6 +58,7 @@ function renderCarButtons() {
 
 function renderControlButtons() {
     document.body.addEventListener('click', async (e: Event) => {
+        const messageWrapper = document.querySelector('.message-win') as HTMLElement;
         const target = e.target as HTMLElement;
         if (target.classList.contains('race-button')) {
             startRace(e);
@@ -66,6 +70,23 @@ function renderControlButtons() {
 
         if (target.classList.contains('generate-button')) {
             generateCars(e);
+        }
+
+        if (target.classList.contains('close-button')) {
+            messageWrapper.classList.remove('visible');
+        }
+    });
+}
+
+function renderSortButtons() {
+    document.body.addEventListener('click', async (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.classList.contains('sort-wins')) {
+            renderSorting(SortBy.Wins);
+        }
+
+        if (target.classList.contains('sort-time')) {
+            renderSorting(SortBy.Time);
         }
     });
 }
