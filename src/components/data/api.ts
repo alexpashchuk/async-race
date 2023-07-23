@@ -18,6 +18,18 @@ async function getCars(page = FIRST_PAGE, limit = CAR_IN_PAGE): Promise<Cars> {
     };
 }
 
+async function createCar(data: Car): Promise<Car> {
+    const car = await fetch(GARAGE, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    return car.json();
+}
+
 async function deleteCar(id: number): Promise<void> {
     await fetch(`${GARAGE}/${id}`, { method: HttpMethod.DELETE });
 }
@@ -121,4 +133,15 @@ async function saveWinner(car: WinnerItems): Promise<void> {
         await updateWinner(id, winnerSave);
     }
 }
-export { getCar, getCars, deleteCar, deleteWinner, getWinners, startEngine, stopEngine, driveCar, saveWinner };
+export {
+    getCar,
+    getCars,
+    createCar,
+    deleteCar,
+    deleteWinner,
+    getWinners,
+    startEngine,
+    stopEngine,
+    driveCar,
+    saveWinner,
+};

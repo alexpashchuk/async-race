@@ -25,7 +25,7 @@ function renderCarTrack(car: Car) {
   <h3 class="car-name">${car.name}</h3>
 </div>
 <div class="track" data-track="${car.id}">
-  <div class="car-wrapper" ><div class="car-image" data-car="${car.id}">${renderCarImage('#40bd3e')}</div></div>
+  <div class="car-wrapper" ><div class="car-image" data-car="${car.id}">${renderCarImage(car.color)}</div></div>
   <div class="flag" data-flag="${car.id}" >${flag}</div>
 </div>
   `;

@@ -198,6 +198,21 @@ body {
     gap: 1rem;
     max-width: 400px;
 }
+
+.garage-button,
+.winners-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 9px 30px 0 rgba(208, 2, 27, 1);
+}
+
+.garage-button > p,
+.winners-button > p {
+    margin-bottom: 2px;
+}
+
 /*---------controls---------*/
 .controls {
     display: flex;

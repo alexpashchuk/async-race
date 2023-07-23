@@ -2,10 +2,13 @@ import { deleteCar, deleteWinner, getCar } from '../data/api';
 import { renderGarage, updateGarage } from '../view/garageView';
 import { startDriving, stopDriving } from './driveController';
 import { resetRace, startRace } from './raceController';
+import generateCars from './generateCars';
+import renderPagination from './pagination';
 
 export default function renderButtonEvents() {
     renderCarButtons();
     renderControlButtons();
+    renderPagination();
 }
 
 function renderCarButtons() {
@@ -59,6 +62,10 @@ function renderControlButtons() {
 
         if (target.classList.contains('reset-button')) {
             resetRace(e);
+        }
+
+        if (target.classList.contains('generate-button')) {
+            generateCars(e);
         }
     });
 }

@@ -50,8 +50,8 @@ function renderHeader() {
     <header class="header">
         <nav class="header-nav">
           <button type="button" class="garage-button">
-            <span>«</span> GARAGE</button>
-          <button type="button" class="winners-button">WINNERS <span>»</span></button>
+            <p>&#8592</p>GARAGE</button>
+          <button type="button" class="winners-button">WINNERS<p>&#8594</p></button>
         </nav>
     </header>
   `;
