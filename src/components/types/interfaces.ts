@@ -6,7 +6,7 @@ interface Car {
 }
 
 interface Cars {
-    items: Car[];
+    cars: Car[];
     count: number;
 }
 
@@ -24,8 +24,23 @@ type WinnerItems = {
 };
 
 interface Winners {
-    items: WinnerItems[];
+    winners: WinnerItems[];
     count: number;
 }
 
-export { Car, Cars, Winner, Winners, WinnerItems };
+interface Engine {
+    velocity: number;
+    distance: number;
+}
+
+interface RacingCar {
+    id: number;
+    success?: boolean;
+    time: number;
+}
+
+interface Animate {
+    id?: number;
+}
+
+export { Car, Cars, Winner, Winners, WinnerItems, Animate, Engine, RacingCar };

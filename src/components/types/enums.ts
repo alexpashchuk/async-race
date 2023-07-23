@@ -1,13 +1,19 @@
 enum HttpStatus {
     OK = 200,
     BAD_REQUEST = 400,
+    NOT_FOUND = 404,
     TOO_MANY_REQUESTS = 429,
     INTERNAL_SERVER_ERROR = 500,
 }
 
-enum STATUS {
-    ID = 'id',
-    STATUS = 'status',
+enum HttpMethod {
+    PATCH = 'PATCH',
+    DELETE = 'DELETE',
+    PUT = 'PUT',
+    POST = 'POST',
+}
+
+enum CarStatus {
     STOP = 'stopped',
     START = 'started',
     DRIVE = 'drive',
@@ -23,4 +29,9 @@ enum SortOrder {
     Desc = 'desc',
 }
 
-export { HttpStatus, STATUS, SortBy, SortOrder };
+enum View {
+    Garage = 'garage',
+    Winners = 'winners',
+}
+
+export { HttpStatus, HttpMethod, SortBy, SortOrder, View, CarStatus };

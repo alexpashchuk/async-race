@@ -8,6 +8,9 @@
     --color-dark-s: #2a2d3d;
     --color-dark-m: #191a21;
 
+    --color-accent: #5e1f32;
+    --color-hover: #962465;
+
     --dark-border: 2px solid var(--color-dark-s);
     --light-border: 2px solid var(--color-light-s);
 }
@@ -121,21 +124,39 @@ button {
     padding: 5px 15px;
     text-transform: uppercase;
     border-radius: 5px;
-    transition: all 0.5s;
+    transition: all 0.3s;
     background: var(--color-light-m);
     border: var(--light-border);
     cursor: pointer;
+    min-height: 32px;
 }
 
-html,
-body {
+button:hover {
+    background: var(--color-hover);
+    color: var(--color-light-m);
+}
+
+button:active:not(:disabled) {
+    scale: 0.95;
+}
+
+input:disabled,
+button:disabled {
+    color: var(--color-dark-s);
+    background: var(--color-gray-m);
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+html {
     scroll-behavior: smooth;
-    height: 100%;
     max-width: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
 body {
+    min-height: 100vh;
     background-image: linear-gradient(
         to right top,
         #962465,
@@ -158,57 +179,88 @@ body {
     flex-direction: column;
     max-width: 1280px;
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     padding: 20px;
+    gap: 10px;
 }
 
+/*---------header---------*/
 .header {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
 }
 
 .header-nav {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    max-width: 22rem;
+    max-width: 400px;
 }
-
+/*---------controls---------*/
 .controls {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 22rem;
-    margin: 0 auto 20px;
+    max-width: 400px;
+    margin: 20px auto;
 }
 
 .forms {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .form-create,
 .form-update {
     display: flex;
-    gap: 1rem;
+    gap: 16px;
     align-items: center;
     justify-content: space-between;
+}
+
+.create-name,
+.update-name {
+    outline: none;
+    border-radius: 5px;
+    border: var(--light-border);
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-accent);
+    min-height: 32px;
+}
+
+.create-color,
+.update-color {
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: var(--light-border);
+    min-height: 32px;
 }
 
 .race-controls {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    max-width: 22rem;
+    gap: 16px;
 }
 
+/*---------garage-view---------*/
+
 .main {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     flex: 1 1 auto;
+}
+
+.garage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .car {
@@ -218,13 +270,13 @@ body {
 .car-controls {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
     margin-bottom: 10px;
 }
 
 .control-buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .car-name {
@@ -235,13 +287,59 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: self-end;
-    border-bottom: 3px dashed greenyellow;
+    border-bottom: 3px dashed var(--color-dark-m);
+}
+
+.track.stop {
+    background-color: #962465;
+    opacity: 0.7;
+}
+
+/*---------winners-view---------*/
+.winners-view {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
 }
 
 .hidden {
     display: none;
 }
 
+.table {
+    max-width: 600px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--color-accent);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.table-head {
+    background-color: var(--color-accent);
+    color: var(--color-light-m);
+}
+
+.table-head,
+.table-body {
+    text-align: center;
+}
+
+.table-body .car-img {
+    width: 80px;
+}
+
+.table-body tr {
+    border: 1px solid var(--color-accent);
+}
+
+.table-head tr th {
+    padding: 10px 0;
+}
+
+/*---------footer---------*/
 .pagination {
     display: flex;
     justify-content: center;

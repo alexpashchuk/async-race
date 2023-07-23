@@ -1,13 +1,15 @@
 import { getCars, getWinners } from './api';
-import { SortBy, SortOrder } from '../types/enums';
+import { Animate } from '../types/interfaces';
 
 const options = {
-    sort: SortBy.Time,
-    order: SortOrder.Asc,
+    sort: 'time',
+    order: 'asc',
+    view: 'garage',
 };
 
-const { items: cars, count: carsCount } = await getCars();
-const { items: winners, count: winnersCount } = await getWinners();
+const { cars, count: carsCount } = await getCars();
+const { winners, count: winnersCount } = await getWinners();
+const animation: Animate[] = [];
 
 const store = {
     cars,
@@ -16,6 +18,7 @@ const store = {
     winnersPage: 1,
     winners,
     winnersCount,
+    animation,
 };
 
 export { options, store };

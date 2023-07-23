@@ -58,9 +58,25 @@ function generateRandomCar(carCount = COUNT_RANDOM_CAR) {
     return new Array(carCount).fill(1).map(() => ({ name: getRandomName(), color: getRandomColor() }));
 }
 
-const getSortOrder = (sort?: string | null, order?: string | null) => {
+function getSortOrder(sort?: string | null, order?: string | null) {
     if (sort && order) return `&_sort=${sort}&_order=${order}`;
     return '';
-};
+}
 
-export { generateRandomCar, getSortOrder };
+function getPosition(element: HTMLElement) {
+    const { top, left, width, height } = element.getBoundingClientRect();
+
+    return {
+        x: left + width / 2,
+        y: top + height / 2,
+    };
+}
+
+function getDistance(firstEl: HTMLElement, secondEl: HTMLElement) {
+    const aPosition = getPosition(firstEl);
+    const bPosition = getPosition(secondEl);
+
+    return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y);
+}
+
+export { generateRandomCar, getSortOrder, getDistance };

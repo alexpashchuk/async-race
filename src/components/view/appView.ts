@@ -1,6 +1,7 @@
-import { renderGarage } from './garageView';
-import { renderWinners } from './winnersView';
-import { store } from '../data/state';
+import { renderGarage, updateGarage } from './garageView';
+import { renderWinners, updateWinners } from './winnersView';
+import { options, store } from '../data/state';
+import { View } from '../types/enums';
 
 export function appView() {
     document.body.innerHTML = `
@@ -34,13 +35,14 @@ export function appView() {
             </div>
             <div class="winners-view hidden">${renderWinners(store.winners)}</div>
             <div class="pagination">
-              <button type="button" class="prev-button" disabled="">PREV</button>
-              <button type="button" class="next-button" disabled="">NEXT</button>
+              <button type="button" class="prev-button">PREV</button>
+              <button type="button" class="next-button">NEXT</button>
             </div>
       </main>
       ${renderFooter()}
     </div>
   `;
+    toggleView();
 }
 
 function renderHeader() {
@@ -71,3 +73,27 @@ function renderFooter() {
     </footer>
  `;
 }
+
+function toggleView() {
+    const garageButton = document.querySelector('.garage-button') as HTMLButtonElement;
+    const winnersButton = document.querySelector('.winners-button') as HTMLButtonElement;
+    const garageContainer = document.querySelector('.garage-view') as HTMLDivElement;
+    const winnersContainer = document.querySelector('.winners-view') as HTMLDivElement;
+
+    garageButton.addEventListener('click', async () => {
+        winnersContainer.classList.add('hidden');
+        garageContainer.classList.remove('hidden');
+        options.view = View.Garage;
+        updateGarage();
+    });
+
+    winnersButton.addEventListener('click', async () => {
+        await updateWinners();
+        garageContainer.classList.add('hidden');
+        winnersContainer.classList.remove('hidden');
+        winnersContainer.innerHTML = renderWinners(store.winners);
+        options.view = View.Winners;
+    });
+}
+
+export { toggleView };

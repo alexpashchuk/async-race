@@ -1,13 +1,14 @@
 import { renderCarImage } from './garageView';
 import { store } from '../data/state';
-import { WinnerItems, Winners } from '../types/interfaces';
+import { WinnerItems } from '../types/interfaces';
+import { getWinners } from '../data/api';
 
 function renderWinners(winners: WinnerItems[]) {
     return `
       <h1>WINNERS (<span class="winners-count">${store.winnersCount}</span>)</h1>
       <h2>PAGE ${store.winnersPage}</h2>
       <table class="table">
-        <thead>
+        <thead class="table-head">
           <tr>
             <th>№</th>
             <th>CAR</th>
@@ -16,7 +17,7 @@ function renderWinners(winners: WinnerItems[]) {
             <th class="table-sort">BEST TIME</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-body">
         ${winners
             .map(
                 (winner, index) => `
@@ -34,4 +35,14 @@ function renderWinners(winners: WinnerItems[]) {
 `;
 }
 
-export { renderWinners };
+async function updateWinners() {
+    const nextPage = document.querySelector('.next-button') as HTMLButtonElement;
+    const prevPage = document.querySelector('.prev-button') as HTMLButtonElement;
+    const { winners, count } = await getWinners(store.winnersPage);
+    store.winners = winners;
+    store.winnersCount = Number(count);
+    nextPage.disabled = store.winnersPage * 10 >= store.winnersCount;
+    prevPage.disabled = store.winnersPage <= 1;
+}
+
+export { renderWinners, updateWinners };
