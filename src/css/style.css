@@ -336,6 +336,7 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    z-index: 100;
 }
 
 .close-button {
@@ -401,6 +402,13 @@ body {
 .sort-wins:active,
 .sort-time:active {
     scale: 0.99;
+}
+
+.sort-wins > p,
+.sort-time > p {
+    display: inline-block;
+    width: 2px;
+    margin-left: 5px;
 }
 
 /*---------footer---------*/

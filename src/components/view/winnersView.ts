@@ -15,8 +15,8 @@ function renderWinners(winners: WinnerItems[]) {
             <th>№</th>
             <th>CAR</th>
             <th>MODEL</th>
-            <th class="sort-wins">WINS<span>${setSortingSign(SortBy.Wins)}</span></th>
-            <th class="sort-time">BEST TIME<span>${setSortingSign(SortBy.Time)}</span></th>
+            <th class="sort-wins">WINS<p>${setSortingSign(SortBy.Wins)}</p></th>
+            <th class="sort-time">BEST TIME<p>${setSortingSign(SortBy.Time)}</p></th>
           </tr>
         </thead>
         <tbody class="table-body">

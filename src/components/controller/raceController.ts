@@ -50,9 +50,10 @@ export async function raceAllCars(promises: Promise<RacingCar>[], ids: number[])
         const restPromises = [...promises.slice(0, failedIndex), ...promises.slice(failedIndex + 1, promises.length)];
         const restIds = [...ids.slice(0, failedIndex), ...ids.slice(failedIndex + 1, ids.length)];
         if (restIds.length === 0) {
-            const message = document.querySelector('.message-win') as HTMLElement;
-            message.innerHTML = 'Race Finished! All cars stopped :(';
-            message.classList.toggle('visible', true);
+            const messageWrapper = document.querySelector('.message-win') as HTMLElement;
+            const message = document.querySelector('.message') as HTMLElement;
+            message.innerHTML = 'Race Finished! All cars stopped';
+            messageWrapper.classList.add('visible');
             const resetButton = document.querySelector('.reset-button') as HTMLButtonElement;
             resetButton.disabled = false;
         }

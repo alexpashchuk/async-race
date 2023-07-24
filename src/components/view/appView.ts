@@ -36,7 +36,7 @@ export function appView() {
             </div>
             <div class="winners-view hidden">${renderWinners(store.winners)}</div>
             <div class="pagination">
-              <button type="button" class="prev-button">PREV</button>
+              <button type="button" class="prev-button" disabled>PREV</button>
               <button type="button" class="next-button">NEXT</button>
             </div>
       </main>
