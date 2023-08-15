@@ -8,7 +8,10 @@ SPA created using communication with a server (fetch, REST API), async coding / 
 
 https://alexpashchuk-async-race.netlify.app/
 
-Back-end is deployed to the free of charge common server, it needs time to wake up. Please be patient and wait for a minute until the website is uploaded. 
+Back-end is deployed to the free of charge common server, it needs time to wake up. Please be patient and wait for a minute until the website is uploaded.
+The Deployed version of the app is already connected to deployed server. 
+
+To run the deployed version, install and start the server [Install Server Api](#back-end)
 
 ## Back-End server
 
@@ -16,7 +19,7 @@ https://github.com/alexpashchuk/async-race/tree/server-api
 
 ## Install instructions:
 
-To see the functionality of the app, server should be running in the meantime. Server-mock is in the branch server-api. The Deployed version of the app is already connected to deployed server.
+To see the functionality of the app, server should be running in the meantime. Server-mock is in the branch server-api.
 
 ### Front-End:
 
